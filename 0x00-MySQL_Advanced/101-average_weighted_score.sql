@@ -1,7 +1,6 @@
 -- This script creates a stored procedure named ComputeAverageWeightedScoreForUsers
 -- The procedure calculates the average weighted score for all students and updates their records.
 
--- Drop the procedure if it already exists to avoid conflicts
 DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUsers;
 
 DELIMITER $$
