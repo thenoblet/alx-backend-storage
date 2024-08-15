@@ -8,7 +8,7 @@ The class provides methods for storing data with a unique identifier.
 """
 
 import redis
-import uuid
+from uuid import uuid4
 from typing import Union, Optional, Callable
 from functools import wraps
 
@@ -104,6 +104,8 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @call_history
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         Store data in Redis with a unique key.
@@ -119,9 +121,9 @@ class Cache:
         uuid.UUID: The unique key associated with the stored data.
         """
 
-        random_key: str = str(uuid.uuid4())
-        self._redis.set(name=random_key, value=data)
-        return random_key
+        key: str = str(uuid4())
+        self._redis.set(name=key, value=data)
+        return key
 
     def get(self, key: str, fn: Optional[Callable] = None):
         """
