@@ -155,15 +155,15 @@ class Cache:
 
         This method fetches the data associated with the given key from Redis,
         decodes it from bytes to a UTF-8 string,
-        and returns the decoded string. If the key does not exist or the data is
-        not found, it returns `None`.
+        and returns the decoded string.
+        If the key does not exist or the data is not found, it returns `None`.
 
         Parameters:
         key (str): The key associated with the data to retrieve from Redis.
 
         Returns:
-        str: The decoded UTF-8 string data associated with the given key, or `None`
-        if the key does not exist or the data is not found.
+        str: The decoded UTF-8 string data associated with the given key, or
+        `None` if the key does not exist or the data is not found.
         """
         return self.get(
             key=key, fn=lambda x: x.decode('utf-8') if x else None
