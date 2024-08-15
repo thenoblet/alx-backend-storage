@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+This module provides functionality to cache web pages using Redis with
+an expiration time. It is designed to efficiently store and retrieve
+web page content to minimize the need for repeated network requests,
+thus improving performance.
+The module also tracks the number of times a URL is accessed.
+"""
 import redis
 import requests
 from typing import Callable
@@ -9,7 +16,7 @@ from functools import wraps
 r = redis.Redis()
 
 
-def cache_with_expiration(expiration: int):
+def cache_with_expiration(expiration: int = 10) -> Callable:
     """
     Decorator to cache the result of a function with an expiration time.
 
